@@ -5,8 +5,6 @@ rem Copyright (c) 2022
 @echo off
 setlocal enabledelayedexpansion
 
-rem chcp 1256 > nul
-
 rem Window width and height
 set /a WIDTH=50
 set /a HEIGHT=25
