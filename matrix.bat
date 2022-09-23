@@ -83,7 +83,7 @@ for /l %%i in (0, 1, %FIXED_HEIGHT%) do (
         rem pick the proper color shade
         if !shade! geq 0 (
             if !shade! leq 10 (
-                call set color=%%FLVL[!shade!]%%
+                call set "color=%%FLVL[!shade!]%%"
             )
         )
 
