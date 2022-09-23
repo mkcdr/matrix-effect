@@ -14,17 +14,17 @@ rem and Green foreground levels for shading
 set ESC=
 set RESET=%ESC%[0m
 
-set FLVL0=%ESC%[38;2;0;255;0m
-set FLVL1=%ESC%[38;2;0;230;0m
-set FLVL2=%ESC%[38;2;0;204;0m
-set FLVL3=%ESC%[38;2;0;179;0m
-set FLVL4=%ESC%[38;2;0;153;0m
-set FLVL5=%ESC%[38;2;0;128;0m
-set FLVL6=%ESC%[38;2;0;102;0m
-set FLVL7=%ESC%[38;2;0;77;0m
-set FLVL8=%ESC%[38;2;0;51;0m
-set FLVL9=%ESC%[38;2;0;26;0m
-set FLVL10=%ESC%[38;2;0;0;0m
+set FLVL[0]=%ESC%[38;2;0;255;0m
+set FLVL[1]=%ESC%[38;2;0;230;0m
+set FLVL[2]=%ESC%[38;2;0;204;0m
+set FLVL[3]=%ESC%[38;2;0;179;0m
+set FLVL[4]=%ESC%[38;2;0;153;0m
+set FLVL[5]=%ESC%[38;2;0;128;0m
+set FLVL[6]=%ESC%[38;2;0;102;0m
+set FLVL[7]=%ESC%[38;2;0;77;0m
+set FLVL[8]=%ESC%[38;2;0;51;0m
+set FLVL[9]=%ESC%[38;2;0;26;0m
+set FLVL[10]=%ESC%[38;2;0;0;0m
 
 rem Window settings
 title Matrix Effect by @mkcdr
@@ -65,7 +65,6 @@ echo %ESC%[?25l
 
 rem coloring the matrix
 for /l %%i in (0, 1, %FIXED_HEIGHT%) do (
-    set line=
     (for /l %%j in (0, 1 %FIXED_WIDTH%) do (
 
         rem get the character at position i,j
@@ -79,22 +78,12 @@ for /l %%i in (0, 1, %FIXED_HEIGHT%) do (
         set /a shade=!shade!%%%FIXED_HEIGHT%
 
         rem set default black color (shade level 10)
-        set color=%FLVL10%
+        set color=%FLVL[10]%
 
         rem pick the proper color shade
         if !shade! geq 0 (
             if !shade! leq 10 (
-                if !shade! equ 0 set color=%FLVL0%
-                if !shade! equ 1 set color=%FLVL1%
-                if !shade! equ 2 set color=%FLVL2%
-                if !shade! equ 3 set color=%FLVL3%
-                if !shade! equ 4 set color=%FLVL4%
-                if !shade! equ 5 set color=%FLVL5%
-                if !shade! equ 6 set color=%FLVL6%
-                if !shade! equ 7 set color=%FLVL7%
-                if !shade! equ 8 set color=%FLVL8%
-                if !shade! equ 9 set color=%FLVL9%
-                if !shade! equ 10 set color=%FLVL10%
+                call set color=%%FLVL[!shade!]%%
             )
         )
 
